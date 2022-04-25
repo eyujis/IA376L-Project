@@ -9,9 +9,9 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os grupos devem ter no máximo três integrantes.
 > |Nome  | RA | Especialização|
 > |--|--|--|
-> | Nome1  | 123456  | Eng. de Computação|
-> | Nome2  | 123456  | Eng. Eletricisita|
-> | Nome3  | 123456  | XXX|
+> | Eduardo Yuji Sakabe | 166810  | Eng. de Computação|
+> | Hélder Jesus Vieira  | 169496  | Eng. Eletricisita|
+> | Leonardo Bernardi de Avila  | 224016  | Eng. Eletricista |
 
 
 ## Descrição Resumida do Projeto
@@ -24,6 +24,7 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 ## Metodologia Proposta
 > Para a primeira entrega, a metodologia proposta deve esclarecer:
 > * Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
+> http://web.mit.edu/torralba/www/indoor.html
 > * Quais abordagens de modelagem generativa o grupo já enxerga como interessantes de serem estudadas.
 > * Artigos de referência já identificados e que serão estudados ou usados como parte do planejamento do projeto
 > * Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
@@ -37,7 +38,6 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > Apontar nesta seção as referências bibliográficas adotadas no projeto.
 
 ## Estrutura do Projeto
---------
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -83,8 +83,5 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
