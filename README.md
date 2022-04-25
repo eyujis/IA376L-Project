@@ -21,24 +21,78 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > 
 > Incluir nessa seção link para vídeo de apresentação da proposta do projeto (máximo 5 minutos).
 
-Nesse projeto, temos o objetivo de gerar, a partir de um modelo sintético, imagens de espaços indoors. Esse problema foi encontrado no paper [PAPER], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Isso se dá, pois em ambientes internos temos diferentes características que podem ajudar a caracterizar o ambiente, por exemplo, imagens de corredores podem ser bem caracterizadas por propriedades espaciais enquanto que uma biblioteca é melhor caracterizada pelos objetos que ela contém. 
+Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper [PAPER], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Isso se dá, pois em ambientes internos temos diferentes características que podem ajudar a caracterizar o ambiente, por exemplo, imagens de corredores podem ser bem caracterizadas por propriedades espaciais enquanto que uma biblioteca é melhor caracterizada pelos objetos que ela contém. Com isso, podemos medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Metodologia Proposta
 > Para a primeira entrega, a metodologia proposta deve esclarecer:
-> * Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
-> http://web.mit.edu/torralba/www/indoor.html
-> [http://web.mit.edu/torralba/www/allIndoors.jpg](Indoors)
+> Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
+
+Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
+
+![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
+
 > * Quais abordagens de modelagem generativa o grupo já enxerga como interessantes de serem estudadas.
+
+Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
+
 > * Artigos de referência já identificados e que serão estudados ou usados como parte do planejamento do projeto
 > * Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+Pytorch, Google Colab
+
 > * Resultados esperados
 > * Proposta de avaliação
 
 ## Cronograma
 > Proposta de cronograma. Procure estimar quantas semanas serão gastas para cada etapa do projeto.
 
+|Início|Tarefa|Duração|
+|-|-|-|
+| 20/04 | Elaboração da proposta | 1 semana
+| 20/04 | Estudos artigos | 4 semanas
+| 27/04 | Estruturação do dataset | 1 semana
+| 27/04 | Implementação da GAN | 3 semanas
+| 27/04 | Implementação da VAE | 3 semanas
+| 18/05 | Implementação da CGAN | 3 semanas
+| 18/05 | Implementação da CVAE | 3 semanas
+| 01/06 | Implementação da métrica Frechet | 2 semanas
+| 01/06 | Implementação da métrica Adversarial Accuracy | 2 semanas
+| 15/06 | Refatoração do código | 2 semanas
+| 15/06 | Elaboração da apresentação final | 2 semanas
+
+|Tarefa|20/04|27/04|04/05|11/05|18/05|25/05|01/06|08/06|15/06|22/06|29/06|06/07|
+|-|-|-|-|-|-|-|-|-|-|-|-|-|
+|Elaboração da proposta|X|||||||||||||||
+|Estudos artigos|X|X|X|X||||||||||||
+|Estruturação do dataset||X|X|||||||||||||
+|Implementação da GAN||X|X|X||||||||||||
+|Implementação da VAE ||X|X|X||||||||||||
+|Implementação da CGAN|||||X|X|X|||||||||
+|Implementação da CVAE|||||X|X|X|||||||||
+|Implementação da métrica Frechet|||||||X|X||||||||
+|Implementação da métrica Adversarial Accuracy|||||||X|X||||||||
+|Refatoração do código|||||||||X|X||||||
+|Elaboração da apresentação final|||||||||X|X||||||
+
 ## Referências Bibliográficas
 > Apontar nesta seção as referências bibliográficas adotadas no projeto.
+
+[1] [Indoor Scene Dataset](http://web.mit.edu/torralba/www/indoor.html)
+
+[2] [Indoor Scene Dataset Paper](http://people.csail.mit.edu/torralba/publications/indoor.pdf)
+
+[3]
+
+[4]
+
+[5] [Conditional VAE](https://papers.nips.cc/paper/2015/file/8d55a249e6baa5c06772297520da2051-Paper.pdf)
+
+[6] [Reliable Fidelity and Diversity Metrics for Generative Models](http://proceedings.mlr.press/v119/naeem20a/naeem20a.pdf)
+
+[7] [Pros and Cons of GAN Evaluation Measures](https://arxiv.org/pdf/1802.03446.pdf)
+
+[8] [Generation and evaluation of privacy preserving synthetic health data](https://www.sciencedirect.com/science/article/pii/S0925231220305117)
+
 
 ## Estrutura do Projeto
 
