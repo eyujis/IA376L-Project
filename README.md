@@ -21,10 +21,13 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > 
 > Incluir nessa seção link para vídeo de apresentação da proposta do projeto (máximo 5 minutos).
 
+Nesse projeto, temos o objetivo de gerar, a partir de um modelo sintético, imagens de espaços indoors. Esse problema foi encontrado no paper [PAPER], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Isso se dá, pois em ambientes internos temos diferentes características que podem ajudar a caracterizar o ambiente, por exemplo, imagens de corredores podem ser bem caracterizadas por propriedades espaciais enquanto que uma biblioteca é melhor caracterizada pelos objetos que ela contém. 
+
 ## Metodologia Proposta
 > Para a primeira entrega, a metodologia proposta deve esclarecer:
 > * Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
 > http://web.mit.edu/torralba/www/indoor.html
+> [http://web.mit.edu/torralba/www/allIndoors.jpg](Indoors)
 > * Quais abordagens de modelagem generativa o grupo já enxerga como interessantes de serem estudadas.
 > * Artigos de referência já identificados e que serão estudados ou usados como parte do planejamento do projeto
 > * Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
