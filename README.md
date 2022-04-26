@@ -87,11 +87,11 @@ Pytorch, Google Colab
 
 [5] [Sohn, K., Lee, H., & Yan, X. (2015). Learning structured output representation using deep conditional generative models. Advances in neural information processing systems, 28.](https://papers.nips.cc/paper/2015/file/8d55a249e6baa5c06772297520da2051-Paper.pdf)
 
-[6] [Reliable Fidelity and Diversity Metrics for Generative Models](http://proceedings.mlr.press/v119/naeem20a/naeem20a.pdf)
+[6] [Naeem, M. F., Oh, S. J., Uh, Y., Choi, Y., & Yoo, J. (2020, November). Reliable fidelity and diversity metrics for generative models. In International Conference on Machine Learning (pp. 7176-7185). PMLR.](http://proceedings.mlr.press/v119/naeem20a/naeem20a.pdf)
 
-[7] [Pros and Cons of GAN Evaluation Measures](https://arxiv.org/pdf/1802.03446.pdf)
+[7] [Borji, A. (2019). Pros and cons of gan evaluation measures. Computer Vision and Image Understanding, 179, 41-65.](https://arxiv.org/pdf/1802.03446.pdf)
 
-[8] [Generation and evaluation of privacy preserving synthetic health data](https://www.sciencedirect.com/science/article/pii/S0925231220305117)
+[8] [Yale, A., Dash, S., Dutta, R., Guyon, I., Pavao, A., & Bennett, K. P. (2020). Generation and evaluation of privacy preserving synthetic health data. Neurocomputing, 416, 244-255.](https://www.sciencedirect.com/science/article/pii/S0925231220305117)
 
 
 ## Estrutura do Projeto
