@@ -21,7 +21,7 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > 
 > Incluir nessa seção link para vídeo de apresentação da proposta do projeto (máximo 5 minutos).
 
-Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper [PAPER], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Isso se dá, pois em ambientes internos temos diferentes características que podem ajudar a caracterizar o ambiente, por exemplo, imagens de corredores podem ser bem caracterizadas por propriedades espaciais enquanto que uma biblioteca é melhor caracterizada pelos objetos que ela contém. Com isso, podemos medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos que podem ser utilizados como inspiração para projetos de design de interiores.
+Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Isso se dá, pois em ambientes internos temos diferentes características que podem ajudar a caracterizar o ambiente, por exemplo, imagens de corredores podem ser bem caracterizadas por propriedades espaciais enquanto que uma biblioteca é melhor caracterizada pelos objetos que ela contém. Com isso, podemos medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Metodologia Proposta
 > Para a primeira entrega, a metodologia proposta deve esclarecer:
@@ -33,7 +33,7 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 
 > * Quais abordagens de modelagem generativa o grupo já enxerga como interessantes de serem estudadas.
 
-Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
+Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) [4] para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) [5] onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
 
 > * Artigos de referência já identificados e que serão estudados ou usados como parte do planejamento do projeto
 > * Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
@@ -79,13 +79,13 @@ Pytorch, Google Colab
 
 [1] [Indoor Scene Dataset](http://web.mit.edu/torralba/www/indoor.html)
 
-[2] [Indoor Scene Dataset Paper](http://people.csail.mit.edu/torralba/publications/indoor.pdf)
+[2] [Quattoni, A., & Torralba, A. (2009, June). Recognizing indoor scenes. In 2009 IEEE conference on computer vision and pattern recognition (pp. 413-420). IEEE.](http://people.csail.mit.edu/torralba/publications/indoor.pdf)
 
-[3]
+[3] [Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., ... & Bengio, Y. (2014). Generative adversarial nets. Advances in neural information processing systems, 27.](https://proceedings.neurips.cc/paper/2014/hash/5ca3e9b122f61f8f06494c97b1afccf3-Abstract.html)
 
-[4]
+[4] [Kingma, D. P., & Welling, M. (2013). Auto-encoding variational bayes. arXiv preprint arXiv:1312.6114.](https://arxiv.org/abs/1312.6114)
 
-[5] [Conditional VAE](https://papers.nips.cc/paper/2015/file/8d55a249e6baa5c06772297520da2051-Paper.pdf)
+[5] [Sohn, K., Lee, H., & Yan, X. (2015). Learning structured output representation using deep conditional generative models. Advances in neural information processing systems, 28.](https://papers.nips.cc/paper/2015/file/8d55a249e6baa5c06772297520da2051-Paper.pdf)
 
 [6] [Reliable Fidelity and Diversity Metrics for Generative Models](http://proceedings.mlr.press/v119/naeem20a/naeem20a.pdf)
 
