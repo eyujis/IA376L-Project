@@ -50,6 +50,10 @@ Na visão de utilidade do dataset gerado, esperamos que as amostras sintéticas 
 
 > * Proposta de avaliação
 
+Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
+
+Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], uma métrica de performance que calcula a distância entre feature vectors gerados por um conjunto de dados reais e de dados sintéticos. Esse feature vector é especificado por uma camada específica da Inception Net. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
+
 ## Cronograma
 > Proposta de cronograma. Procure estimar quantas semanas serão gastas para cada etapa do projeto.
 
@@ -99,6 +103,8 @@ Na visão de utilidade do dataset gerado, esperamos que as amostras sintéticas 
 [7] [Borji, A. (2019). Pros and cons of gan evaluation measures. Computer Vision and Image Understanding, 179, 41-65.](https://arxiv.org/pdf/1802.03446.pdf)
 
 [8] [Yale, A., Dash, S., Dutta, R., Guyon, I., Pavao, A., & Bennett, K. P. (2020). Generation and evaluation of privacy preserving synthetic health data. Neurocomputing, 416, 244-255.](https://www.sciencedirect.com/science/article/pii/S0925231220305117)
+
+[9] [Heusel, M., Ramsauer, H., Unterthiner, T., Nessler, B., & Hochreiter, S. (2017). Gans trained by a two time-scale update rule converge to a local nash equilibrium. Advances in neural information processing systems, 30.](https://proceedings.neurips.cc/paper/2017/hash/8a1d694707eb0fefe65871369074926d-Abstract.html)
 
 
 ## Estrutura do Projeto
