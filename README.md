@@ -40,6 +40,12 @@ Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Auto
 
 Pytorch, Google Colab
 
+> * Proposta de avaliação
+
+Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
+
+Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
+
 > * Resultados esperados
 
 Do ponto de vista qualitativo, esperamos que os modelos baseados em GANs gerem imagens mais nítidas, com bordas melhores definidas do que as imagens geradas pelos modelos baseados em VAEs. Isso deve se refletir, para esses modelos, em uma melhor métrica de Fréchet.
@@ -47,12 +53,6 @@ Do ponto de vista qualitativo, esperamos que os modelos baseados em GANs gerem i
 Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperamos uma baixa performance, de maneira em que as imagens geradas sejam extremamente semelhantes aos exemplos de treino, resultando numa Privacy Loss alta [8].
 
 Na visão de utilidade do dataset gerado, esperamos que as amostras sintéticas sejam capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperamos, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
-
-> * Proposta de avaliação
-
-Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
-
-Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
 
 ## Cronograma
 > Proposta de cronograma. Procure estimar quantas semanas serão gastas para cada etapa do projeto.
