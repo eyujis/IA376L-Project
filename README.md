@@ -41,6 +41,13 @@ Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Auto
 Pytorch, Google Colab
 
 > * Resultados esperados
+
+Do ponto de vista qualitativo, esperamos que os modelos baseados em GANs gerem imagens mais nítidas, com bordas melhores definidas do que as imagens geradas pelos modelos baseados em VAEs. Isso deve se refletir, para esses modelos, em uma melhor métrica de Frechet.
+
+Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperamos uma baixa performance, de maneira em que as imagens geradas sejam extremamente semelhantes aos exemplos de treino, resultando numa Privacy Loss alta [8].
+
+Na visão de utilidade do dataset gerado, esperamos que as amostras sintéticas sejam capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperamos, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
+
 > * Proposta de avaliação
 
 ## Cronograma
