@@ -60,6 +60,7 @@ Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], qu
 |Início|Tarefa|Duração|
 |-|-|-|
 | 20/04 | Elaboração da proposta | 1 semana
+| 20/04 | Estudo sobre métricas de similaridade entre imagens | 6 semanas
 | 20/04 | Estudos artigos | 4 semanas
 | 27/04 | Estruturação do dataset | 1 semana
 | 27/04 | Implementação da GAN | 3 semanas
@@ -74,6 +75,7 @@ Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], qu
 |Tarefa|20/04|27/04|04/05|11/05|18/05|25/05|01/06|08/06|15/06|22/06|29/06|06/07|
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
 |Elaboração da proposta|X|||||||||||||||
+|EEstudo sobre métricas de similaridade entre imagens|X|X|X|X|X|X||||||||||
 |Estudos artigos|X|X|X|X||||||||||||
 |Estruturação do dataset||X|X|||||||||||||
 |Implementação da GAN||X|X|X||||||||||||
