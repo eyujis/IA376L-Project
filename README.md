@@ -75,7 +75,7 @@ Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], qu
 |Tarefa|20/04|27/04|04/05|11/05|18/05|25/05|01/06|08/06|15/06|22/06|29/06|06/07|
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
 |Elaboração da proposta|X|||||||||||||||
-|EEstudo sobre métricas de similaridade entre imagens|X|X|X|X|X|X||||||||||
+|Estudo sobre métricas de similaridade entre imagens|X|X|X|X|X|X||||||||||
 |Estudos artigos|X|X|X|X||||||||||||
 |Estruturação do dataset||X|X|||||||||||||
 |Implementação da GAN||X|X|X||||||||||||
