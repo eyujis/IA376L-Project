@@ -23,6 +23,8 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 
 Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
+<a href="https://www.youtube.com/watch?v=v-esoYPAqTc" target="_blank">Vídeo da apresentação da proposta do projeto</a>
+
 ## Metodologia Proposta
 > Para a primeira entrega, a metodologia proposta deve esclarecer:
 > * Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
