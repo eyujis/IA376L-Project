@@ -32,8 +32,6 @@ var/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-.tar.gz
-.tar
 
 # Unit test / coverage reports
 htmlcov/
@@ -79,6 +77,8 @@ target/
 
 # exclude data from source control by default
 /data/
+*.tar.gz
+*.tar
 
 # Mac OS-specific storage files
 .DS_Store
