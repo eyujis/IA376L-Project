@@ -128,6 +128,18 @@ Samples amostrados espaço latente -> decoder na época 99:
 
 Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
 
+#### Tentativa com VAE simples
+
+Vale ressaltar o experimento feito com a VAE mais simples, sem camadas convolucionais, presente no notebook `notebooks/leonardo_VAE_indoors_scenes.ipynb`. As imagens geradas por essa solução ficaram muito diferente do esperado, com uma saturação excessiva. Exploraremos os parâmetros de normalização das fotos para tentar corrigir esse problema, porém a solução com VAEs com camadas convolucionais gerou resultados mais próximos do esperado.
+
+Samples amostrados espaço latente -> decoder na época 295:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_sample.png)
+
+Reconstruções na época 295:
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
+
 
 ## Conclusão
 
