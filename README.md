@@ -89,6 +89,9 @@ Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utili
 > A sessão de Conclusão deve ser uma sessão que recupera as principais informações já apresentadas no relatório e que aponta para trabalhos futuros.
 > Na entrega parcial do projeto (E2) pode conter informações sobre quais etapas ou como o projeto será conduzido até a sua finalização.
 > Na entrega final do projeto (E3) espera-se que a conclusão elenque, dentre outros aspectos, possibilidades de continuidade do projeto.
+E2: Devido aos resultados parciais apresentados até então, iremos inserir mais uma etapa de exploração de GANs e VAEs com estruturas mais complexas dos que os inicialmente abordados. Feito isso, serão então avaliados os modelos condicionais. Essas novas atividades deverão afetar, mas não atrasar o cronograma proposto inicialmente.
+
+
 
 ## Referências Bibliográficas
 > Apontar nesta seção as referências bibliográficas adotadas no projeto.
