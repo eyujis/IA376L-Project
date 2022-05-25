@@ -74,11 +74,11 @@ Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], qu
 > O que se espera da sessão de resultados é que ela **apresente e discuta** somente os resultados mais **relevantes**, que mostre os **potenciais e/ou limitações** da metodologia, que destaquem aspectos
 > de **performance** e que contenha conteúdo que possa ser classificado como **compartilhamento organizado, didático e reprodutível de conhecimento relevante para a comunidade**. 
 
-Do ponto de vista qualitativo, esperamos que os modelos baseados em GANs gerem imagens mais nítidas, com bordas melhores definidas do que as imagens geradas pelos modelos baseados em VAEs. Isso deve se refletir, para esses modelos, em uma melhor métrica de Fréchet.
+Do ponto de vista qualitativo, esperávamos inicialmente que os modelos baseados em GANs gerassem imagens mais nítidas, com bordas mais bem definidas do que as imagens geradas pelos modelos baseados em VAEs. Isso que esta suposição deveria se refletir, para esses modelos, em uma melhor métrica de Fréchet.
 
-Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperamos uma baixa performance, de maneira em que as imagens geradas sejam extremamente semelhantes aos exemplos de treino, resultando numa Privacy Loss alta [8].
+Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperávamos inicialmente uma baixa performance, de maneira em que as imagens geradas sejam extremamente semelhantes aos exemplos de treino, resultando numa Privacy Loss alta [8].
 
-Na visão de utilidade do dataset gerado, esperamos que as amostras sintéticas sejam capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperamos, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
+Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
 ## Conclusão
 
