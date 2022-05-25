@@ -80,6 +80,8 @@ Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperáv
 
 Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
+### Implementação da GAN
+
 Primeiro, implementamos a GAN utilizando o dataset com pre-processamento apresentado no notebook `notebooks/leonardo_dataprep.ipynb` com imagens de dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset MNIST com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. Nos dois experimentos as funções de loss de ambas as redes não convergiram. 
 
 Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset inteiro com 15620 e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
@@ -104,6 +106,28 @@ E durante a época 412:
 Logo, pudemos concluir que o nossa implementação estava correta, contudo nossa GAN não teve capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognitionde](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
 
 Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), iremos desenvolver uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, é capaz de generalizar mais exemplos distintos do dataset.
+
+### Implementação da VAE
+
+A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/leonardo_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/AntixK/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+
+Assim como o esperado, obtivemos um resultado com imagens borradas [10], mas o aprendizado da rede ao longo das épocas foi notável.
+
+Samples amostrados espaço latente -> decoder na época 0:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_0.png)
+
+Samples amostrados espaço latente -> decoder na época 49:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_49.png)
+
+Samples amostrados espaço latente -> decoder na época 99:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_99.png)
+
+
+Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
+
 
 ## Conclusão
 
@@ -134,3 +158,5 @@ E2: Devido aos resultados parciais apresentados até então, iremos inserir mais
 [8] [Yale, A., Dash, S., Dutta, R., Guyon, I., Pavao, A., & Bennett, K. P. (2020). Generation and evaluation of privacy preserving synthetic health data. Neurocomputing, 416, 244-255.](https://www.sciencedirect.com/science/article/pii/S0925231220305117)
 
 [9] [Heusel, M., Ramsauer, H., Unterthiner, T., Nessler, B., & Hochreiter, S. (2017). Gans trained by a two time-scale update rule converge to a local nash equilibrium. Advances in neural information processing systems, 30.](https://proceedings.neurips.cc/paper/2017/hash/8a1d694707eb0fefe65871369074926d-Abstract.html)
+
+[10] [Cai, L., Gao, H. and Ji, S., 2019, May. Multi-stage variational auto-encoders for coarse-to-fine image generation. In Proceedings of the 2019 SIAM International Conference on Data Mining (pp. 630-638). Society for Industrial and Applied Mathematics.](https://arxiv.org/abs/1705.07202)
