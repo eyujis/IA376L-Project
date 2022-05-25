@@ -80,6 +80,10 @@ Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperáv
 
 Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
+Primeiro, implementamos a GAN utilizando o dataset com pre-processamento apresentado no notebook `notebooks/leonardo_dataprep.ipynb`. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente testadas no dataset MNIST com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. Nos dois experimentos as funções de loss de ambas as redes não convergiram. 
+
+Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset inteiro com 15620 e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época 
+
 ## Conclusão
 
 > A sessão de Conclusão deve ser uma sessão que recupera as principais informações já apresentadas no relatório e que aponta para trabalhos futuros.
