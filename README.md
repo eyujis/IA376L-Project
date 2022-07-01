@@ -18,7 +18,6 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 > Resumo do objetivo, metodologia **e resultados** obtidos. Sugere-se máximo de 100 palavras.
 
 
-
 ## Descrição do Problema/Motivação
 
 > Descrição do contexto gerador do tema do projeto. Motivação para abordar este tema de projeto.
@@ -39,9 +38,7 @@ Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de
 > Apontar ferramentas relevantes.
 > Descrever metodologia de avaliação (como se avalia se os objetivos foram cumpridos ou não?).
 
-> Para a primeira entrega, a metodologia proposta deve esclarecer:
-> * Qual(is) base(s) de dado(s) o projeto pretende utilizar, justificando a(s) escolha(s) realizadas.
-
+### Dataset
 Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
 
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
@@ -50,10 +47,6 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 
 Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) [4] para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) [5] onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
 
-> * Artigos de referência já identificados e que serão estudados ou usados como parte do planejamento do projeto
-> * Ferramentas a serem utilizadas (com base na visão atual do grupo sobre o projeto).
-
-Pytorch, Google Colab
 
 > * Proposta de avaliação
 
