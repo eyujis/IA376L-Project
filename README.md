@@ -146,9 +146,11 @@ Além disso, devido a alta variabilidade do Indoor Recognition Dataset, decidimo
 
 Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmo hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo (8000).
 
-O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a execução, percebeu-se que na época 1100 já era possível encontrar imagens geradas que se assemelhavam a quartos como demonstrado na figura abaixo: 
+O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a execução, percebeu-se que na época 1100 já era possível encontrar imagens geradas que se assemelhavam a quartos, mas com muitas distorções, como demonstrado na figura abaixo: 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_1100.png)
 
+Além disso, as losses do discriminador e do gerador se manteram instáveis durante o treino comparando-se aos resultados apresentados no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html). A figura abaixo apresenta as losses durante o treinamento do nosso modelo:
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_loss.png)
 
 
 
