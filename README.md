@@ -104,6 +104,13 @@ Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo p
 
 ### Implementação da DCGAN
  
+Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. A sua rede geradora possui a seguinte taxonomia:
+![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
+
+Além disso, devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom`.
+
+Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmo hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo (8000).
+
 
 
 ### Implementação da VAE
