@@ -102,6 +102,10 @@ Logo, pudemos concluir que o nossa implementação estava correta, contudo nossa
 
 Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), iremos desenvolver uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, é capaz de generalizar mais exemplos distintos do dataset.
 
+### Implementação da DCGAN
+ 
+
+
 ### Implementação da VAE
 
 A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/leonardo_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
