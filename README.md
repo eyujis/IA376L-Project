@@ -152,6 +152,8 @@ O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a
 Além disso, as losses do discriminador e do gerador se manteram instáveis durante o treino comparando-se aos resultados apresentados no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html). A figura abaixo apresenta as losses durante o treinamento do nosso modelo:
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_loss.png)
 
+Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue uma crescente até um decaimento abrupto próximo ao fim do treino. Julgamos pela qualidade dos resultados, não prosseguir com a avaliação deste modelo. Principalmente por conta da FastGAN apresentar melhores resultados qualitativos. 
+
 
 
 ## Conclusão
