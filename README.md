@@ -31,24 +31,26 @@ Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de
 
 ## Metodologia Proposta
 
-> Descrever de maneira clara e objetiva, citando referências, a metodologia proposta (E2) ou adotada (E3) para se alcançar os objetivos do projeto.
-> Descrever bases de dados utilizadas.
-> Citar algoritmos de referência.
-> Justificar os porquês dos métodos escolhidos.
-> Apontar ferramentas relevantes.
-> Descrever metodologia de avaliação (como se avalia se os objetivos foram cumpridos ou não?).
-
 ### Dataset
 Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
 
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
 
-> * Quais abordagens de modelagem generativa o grupo já enxerga como interessantes de serem estudadas.
+### Modelos utilizados
+
+#### GAN
+
+#### DCGAN
+
+#### VAE
+
+#### FastGAN
+
+#### CGAN
 
 Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) [4] para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) [5] onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
 
-
-> * Proposta de avaliação
+### Proposta de avaliação
 
 Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
 
