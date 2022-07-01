@@ -102,17 +102,6 @@ Logo, pudemos concluir que o nossa implementação estava correta, contudo nossa
 
 Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), iremos desenvolver uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, é capaz de generalizar mais exemplos distintos do dataset.
 
-### Implementação da DCGAN
- 
-Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. A sua rede geradora possui a seguinte taxonomia:
-![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
-
-Além disso, devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom`.
-
-Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmo hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo (8000).
-
-
-
 ### Implementação da VAE
 
 A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/leonardo_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
@@ -145,6 +134,18 @@ Samples amostrados espaço latente -> decoder na época 295:
 Reconstruções na época 295:
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
+
+
+### Implementação da DCGAN
+ 
+Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. A sua rede geradora possui a seguinte taxonomia:
+![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
+
+Além disso, devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom`.
+
+Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmo hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo (8000).
+
+
 
 
 ## Conclusão
