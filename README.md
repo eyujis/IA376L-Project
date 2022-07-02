@@ -37,6 +37,7 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
 
 ### Modelos Avaliados
+<Pensei em deixar uma breve descrição dos modelos que avaliaremos aqui mas acho seria mais um nice to have>.
 Abaixo segue a descrição dos modelos utilizados. 
 
 #### GAN
