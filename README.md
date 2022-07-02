@@ -60,6 +60,8 @@ Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois cla
 
 Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
 
+O processo de avaliação foi realizado apenas a FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
+
 ## Resultados e Discussão dos Resultados
 
 > Na entrega parcial do projeto (E2), essa seção pode conter resultados parciais, explorações de implementações realizadas e 
