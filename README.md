@@ -53,7 +53,7 @@ Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Auto
 
 ### Proposta de avaliação
 
-Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre pontos, assim, adaptar essa distância que utilizava originalmente de dados tabulares para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding de uma resnet <adicionar aqui a referência da resnet usada.> 
+Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da resnet <adicionar aqui a referência da resnet usada.> 
 
 Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
 
