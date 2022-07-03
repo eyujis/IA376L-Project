@@ -49,7 +49,7 @@ O pre-processamento do dataset utilizado para o treino dos modelos por der encon
 Abaixo segue a descrição dos modelos utilizados. 
 
 #### GAN
-Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada.
+Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. O modelo foi treinado por 50 épocas utilizando o dataset completo (15620 exemplos) com todas as classes.
 
 
 #### DCGAN
