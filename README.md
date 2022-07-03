@@ -34,7 +34,6 @@ Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de
 Este projeto tem como objetivo geral implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), < TODO | Helder colocar aqui as variações de VAE >, e FastGAN para a tarefa de sintetização de imagens de espaços indoor da classe bedroom. Como objetivo específico, busca-se que o modelo sintetize exemplos diferentes dos presentes no treino, logo ele teria a capacidade de generalizar o conceito de quartos e não apenas replicar o que já teve acesso. 
 
 
-
 ## Metodologia Proposta
 >Descrever de maneira clara e objetiva, citando referências, a metodologia proposta (E2) ou adotada (E3) para se alcançar os objetivos do projeto. Descrever bases de dados utilizadas. Citar algoritmos de referência. Justificar os porquês dos métodos escolhidos. Apontar ferramentas relevantes. Descrever metodologia de avaliação (como se avalia se os objetivos foram cumpridos ou não?).
 
@@ -43,11 +42,15 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
 
+O pre-processamento do dataset utilizado para o treino dos modelos por der encontrado no notebook `notebooks/leonardo_dataprep.ipynb`.
+
 ### Modelos Avaliados
 <Pensei em deixar uma breve descrição dos modelos que avaliaremos aqui mas acho seria mais um nice to have>.
 Abaixo segue a descrição dos modelos utilizados. 
 
 #### GAN
+Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada.
+
 
 #### DCGAN
 
@@ -91,8 +94,6 @@ Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperáv
 Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
 ### Implementação e Resultados da GAN
-
-Primeiro, implementamos a GAN utilizando o dataset com pre-processamento apresentado no notebook `notebooks/leonardo_dataprep.ipynb` com imagens de dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset MNIST com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. Nos dois experimentos as funções de loss de ambas as redes não convergiram. 
 
 Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset inteiro com 15620 e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
 
