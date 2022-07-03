@@ -95,28 +95,13 @@ Na visão de utilidade do dataset gerado, esperávamos que as amostras sintétic
 
 ### Implementação e Resultados da GAN
 
-Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset inteiro com 15620 e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
+Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset completo com 15620 exemplos e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_full_dataset_epoch_50.png)
 
-Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. 
+Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. Vale mencionar que realizamos um experimento com o mesmo modelo porém para um dataset de apenas duas imagens, no notebook `notebooks/GAN_overfit_dataset.ipynb`, e o modelo foi capaz de gerar as duas imagens, logo podemos concluir que o modelo não teve a capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognitionde](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
 
-Logo, supomos que tivéssemos cometido uma falha de implementação, por isso treinamos novamente o modelo no notebook `notebooks/GAN_overfit_dataset.ipynb`, contudo com um dataset reduzido de apenas duas imagens. 
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_overfit_dataset.png)
-
-Durante o treinamento, o modelo foi capaz de reproduzir imagens semelhantes aos exemplos do dataset. 
-Por exemplo, durante a época 209: 
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_overfit_dataset_epoch_209.png)
-
-E durante a época 412:
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_overfit_dataset_epoch_412.png).
-
-Logo, pudemos concluir que o nossa implementação estava correta, contudo nossa GAN não teve capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognitionde](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
-
-Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), iremos desenvolver uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, é capaz de generalizar mais exemplos distintos do dataset.
+Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), desenvolvemos uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, seria capaz de generalizar mais exemplos distintos do dataset.
 
 ### Implementação e Resultados da VAE
 
