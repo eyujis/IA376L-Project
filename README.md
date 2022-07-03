@@ -17,6 +17,8 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 
 > Resumo do objetivo, metodologia **e resultados** obtidos. Sugere-se máximo de 100 palavras.
 
+Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), <Helder colocar aqui as variações de VAE>, e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom` não presentes no dataset de treino. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o modelo que obteve resultados mais promissores nesta fase, desta maneira calculamos a Fréchet Inception Distance (FID) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. <TODO | Falar sobre os resultados>
+
 
 ## Descrição do Problema/Motivação
 
