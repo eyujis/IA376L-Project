@@ -81,7 +81,7 @@ Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperáv
 
 Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
-### Implementação da GAN
+### Implementação e Resultados da GAN
 
 Primeiro, implementamos a GAN utilizando o dataset com pre-processamento apresentado no notebook `notebooks/leonardo_dataprep.ipynb` com imagens de dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset MNIST com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. Nos dois experimentos as funções de loss de ambas as redes não convergiram. 
 
@@ -108,7 +108,7 @@ Logo, pudemos concluir que o nossa implementação estava correta, contudo nossa
 
 Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), iremos desenvolver uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, é capaz de generalizar mais exemplos distintos do dataset.
 
-### Implementação da VAE
+### Implementação e Resultados da VAE
 
 A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/leonardo_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
 
@@ -142,7 +142,7 @@ Reconstruções na época 295:
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
 
 
-### Implementação da DCGAN
+### Implementação e Resultados da DCGAN
  
 Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. A sua rede geradora possui a seguinte taxonomia:
 ![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
