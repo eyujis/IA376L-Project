@@ -93,7 +93,7 @@ Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperáv
 
 Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
 
-### Implementação e Resultados da GAN
+### Resultados da GAN
 
 Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset completo com 15620 exemplos e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
 
@@ -137,7 +137,7 @@ Reconstruções na época 295:
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
 
 
-### Implementação e Resultados da DCGAN
+### Resultados da DCGAN
 
 Devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom` para a DCGAN. O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a execução, percebeu-se que na época 1100 já era possível encontrar imagens geradas que se assemelhavam a quartos, mas com muitas distorções, como demonstrado na figura abaixo: 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_1100.png)
