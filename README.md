@@ -149,6 +149,12 @@ Além disso, as losses do discriminador e do gerador se manteram instáveis dura
 Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue uma crescente até um decaimento abrupto próximo ao fim do treino. Julgamos pela baixa qualidade dos resultados não prosseguir com uma avaliação mais profunda deste modelo. Principalmente por conta da FastGAN apresentar melhores resultados qualitativos. 
 
 
+### Resultados FAST GAN
+
+A única arquitetura capaz de representar imagens significativas foi a FAST GAN e, por isso, seus resultados foram explorados de maneira mais aprofundada. Foram gerados resultados de Adversarial Accuracy, Privacy Loss e FID, além de uma análise qualitativa das distribuições utilizando PCA, para modelos treinados com batch size de 8 e 10K, 50K, 100K e 150K iterações. Os resultados foram consolidados na tabela abaixo:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/table_results.png)
+
 
 ## Conclusão
 
