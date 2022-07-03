@@ -29,11 +29,10 @@ Este projeto tem como objetivo implementar e avaliar os modelos generativos Vari
 Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Objetivo
+> Descrição do que o projeto se propõe a fazer. É possível explicitar um objetivo geral e objetivos específicos do projeto.
 
-> Descrição do que o projeto se propõe a fazer.
-> É possível explicitar um objetivo geral e objetivos específicos do projeto.
+Este projeto tem como objetivo geral implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), < TODO | Helder colocar aqui as variações de VAE >, e FastGAN para a tarefa de sintetização de imagens de espaços indoor da classe bedroom. Como objetivo específico, busca-se que o modelo sintetize exemplos diferentes dos presentes no treino, logo ele teria a capacidade de generalizar o conceito de quartos e não apenas replicar o que já teve acesso. 
 
-Este projeto tem como objetivo implementar e avaliar os modelos generativos VAE e GAN, e algumas de suas variações, para a sintetização de espaços indoor.
 
 
 ## Metodologia Proposta
