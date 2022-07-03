@@ -29,6 +29,9 @@ Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de
 > Descrição do que o projeto se propõe a fazer.
 > É possível explicitar um objetivo geral e objetivos específicos do projeto.
 
+Este projeto tem como objetivo implementar e avaliar os modelos generativos VAE e GAN, e algumas de suas variações, para a sintetização de espaços indoor.
+
+
 ## Metodologia Proposta
 >Descrever de maneira clara e objetiva, citando referências, a metodologia proposta (E2) ou adotada (E3) para se alcançar os objetivos do projeto. Descrever bases de dados utilizadas. Citar algoritmos de referência. Justificar os porquês dos métodos escolhidos. Apontar ferramentas relevantes. Descrever metodologia de avaliação (como se avalia se os objetivos foram cumpridos ou não?).
 
