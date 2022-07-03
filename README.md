@@ -55,7 +55,7 @@ Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [
 ![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
 
 
-Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmo hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo ao do tutorial (8000).
+Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmos hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo ao do tutorial (8000).
 
 #### VAE
 
