@@ -17,12 +17,14 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 
 > Resumo do objetivo, metodologia **e resultados** obtidos. Sugere-se máximo de 100 palavras.
 
-Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), <Helder colocar aqui as variações de VAE>, e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom` não presentes no dataset de treino. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o modelo que obteve resultados mais promissores nesta fase, desta maneira calculamos a Fréchet Inception Distance (FID) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. <TODO | Falar sobre os resultados>
+Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), < TODO | Helder colocar aqui as variações de VAE >, e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom` não presentes no dataset de treino. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o modelo que obteve resultados mais promissores nesta fase, desta maneira calculamos a Fréchet Inception Distance (FID) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. < TODO | Falar sobre os resultados >
 
 
 ## Descrição do Problema/Motivação
 
 > Descrição do contexto gerador do tema do projeto. Motivação para abordar este tema de projeto.
+
+< TODO | Falar sobre encorporação de agentes, leis peirceanas e criação de conceitos >.
 
 Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
