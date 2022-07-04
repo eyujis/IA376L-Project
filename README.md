@@ -72,8 +72,6 @@ Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Auto
 
 Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da resnet <adicionar aqui a referência da resnet usada.> 
 
-Além disso, mensuraremos a _Utility_ do modelo, para isso, treinaremos dois classificadores (de grandes grupos) com parâmetros idênticos, um com dados reais e outro com dados sintéticos, e compararemos a acurácia de ambos os modelos classificando um conjunto de teste de imagens reais. As métricas acima são introduzidas em [8].
-
 Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
 
 O processo de avaliação foi realizado apenas a FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
@@ -155,7 +153,47 @@ A única arquitetura capaz de representar imagens significativas foi a FAST GAN 
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/table_results.png)
 
+#### Métricas objetivas
 
+Uma boa maneira de interpretar os resultados da Adversarial Accuracy é pensar que ela representa o desempenho de um classificador KNN que tenta discriminar o dataset sintético do dataset original. Idealmente, se as amostras sintéticas reproduzem perfeitamente a distribuição original, espera-se que o desempenho desse classificador seja aleatório e, portanto, o valor da Adversarial Accuracy tenderia a 0.5. Por tanto, quanto mais distante desse valor ideal, menos reais são as imagens sintéticas. Isto posto, é perceptível um ganho considerável de desempenho a partir da iteração 50K, porém os valores na ordem de 0.85 indicam que as imagens geradas ainda estão distantes da distribuição original.  
+
+O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de "vazamento" de informações de treino para as amostras sintéticas. Em todos as iterações testadas, a métrica foi aproximadamente nula, o que indica um baixo grau de cópia das informações usadas durante o aprendizado da rede. Contudo, a baixa qualidade das fotos, demonstradas pelo alto AA, podem contribuir para uma métrica de Privacy Loss baixa, pois a falta de qualidade produz imagens diferentes o suficiente das imagens originais.
+
+Os valores de FID representam a qualidade da amostras geradas. De maneira similar à AA, também é possível ver um ganho de desempenho no modelo com 50K iterações.  
+
+#### Análise via PCA
+
+inserir aqui texto sobre o PCA com baixa variância
+
+| | |
+|:-------------------------:|:-------------------------:|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_10k.png"> |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_50k.png">|
+|<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_100k.png">  |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_150k.png">|
+
+
+#### Comparação das imagens geradas com a base de treino
+
+As proximidades entre a foto gerada e as imagens de treino foram calculadas usando tanto a distância perceptual via LPIPS, como a distância cosseno dos embeddings gerados pela RESNET.
+
+Nota-se que, apesar das imagens geradas não serem idênticas as vistas no treino, de certa forma existe uma interpolação entre as características mais acentuadas das fotos, que é composta na foto gerada. Isso fica mais evidente na primeira foto, onde há a reprodução da janela com paisagem verde e elementos do teto das fotos originais na foto gerada sinteticamente.
+
+Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para a direita:
+
+Foto sintética -> 1ª foto real mais próxima -> 2ª foto real mais próxima -> 3ª foto real mais próxima -> 4ª foto real mais próxima
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_19.png)
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_19.png)  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_15.png)
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_15.png)   
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_112.png)
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_112.png)   
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_331.png)
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_331.png)
+
+  
 ## Conclusão
 
 > A sessão de Conclusão deve ser uma sessão que recupera as principais informações já apresentadas no relatório e que aponta para trabalhos futuros.
