@@ -48,6 +48,12 @@ A preparação do dataset utilizado para o treino dos modelos pode ser encontrad
 <Pensei em deixar uma breve descrição dos modelos que avaliaremos aqui mas acho seria mais um nice to have>.
 Abaixo segue a descrição dos modelos utilizados.
 
+#### FastGAN
+
+Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
+
+O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom'.
+
 #### GAN
 Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. O modelo foi treinado por 50 épocas utilizando o dataset completo (15620 exemplos) com todas as classes.
 
@@ -61,24 +67,14 @@ Com o propósito de fazer uma comparação entre ambas as aplicações, geraçã
 
 #### VAE
 
-#### FastGAN
-
-Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
-
-O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom'.
-
-< TODO | retirar essa parte da CGAN>.
-#### CGAN
-
-Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) [4] para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) [5] onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
 
 ### Proposta de avaliação
 
-Primeiro realizamos uma implementação simples de todos os modelos, seguido de uma avaliação qualitativa sobre os resultados, pois modelos como a GAN vanilla e a VAE vanilla geraram apenas imagens borrada, não sendo passíveis de avaliações mais criteriosas como as apresentadas a seguir. 
-
-Utilizamos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da resnet <adicionar aqui a referência da resnet usada.> 
+Utilizamos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da resnet <adicionar aqui a referência da resnet usada.> <explicar que a métrica é ótima em 0.5> 
 
 Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
+
+Análise qualitativa das fotos comparando foto mais próxima LPIPS e cosseno.   TODO: escrever
 
 O processo de avaliação foi realizado apenas na FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
 
@@ -91,68 +87,6 @@ O processo de avaliação foi realizado apenas na FastGAN, uma vez que foi o ún
 > O que se espera da sessão de resultados é que ela **apresente e discuta** somente os resultados mais **relevantes**, que mostre os **potenciais e/ou limitações** da metodologia, que destaquem aspectos
 > de **performance** e que contenha conteúdo que possa ser classificado como **compartilhamento organizado, didático e reprodutível de conhecimento relevante para a comunidade**. 
 
-Do ponto de vista qualitativo, esperávamos inicialmente que os modelos baseados em GANs gerassem imagens mais nítidas, com bordas mais bem definidas do que as imagens geradas pelos modelos baseados em VAEs. Isso que esta suposição deveria se refletir, para esses modelos, em uma melhor métrica de Fréchet.
-
-Do ponto de vista da capacidade dos modelos em gerar imagens criativas, esperávamos inicialmente uma baixa performance, de maneira em que as imagens geradas sejam extremamente semelhantes aos exemplos de treino, resultando numa Privacy Loss alta [8].
-
-Na visão de utilidade do dataset gerado, esperávamos que as amostras sintéticas fossem capazes de treinar um modelo classificador para as imagens com performance semelhante a um modelo treinado com dados reais. Esperávamos também, novamente, que as soluções baseadas em GANs tenham uma performance superior às baseadas em VAEs.
-
-### Resultados da GAN
-
-Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset completo com 15620 exemplos e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_full_dataset_epoch_50.png)
-
-Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. Vale mencionar que realizamos um experimento com o mesmo modelo porém para um dataset de apenas duas imagens, no notebook `notebooks/GAN_overfit_dataset.ipynb`, e o modelo foi capaz de gerar as duas imagens, logo podemos concluir que o modelo não teve a capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognition](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
-
-Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), desenvolvemos uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, seria capaz de generalizar mais exemplos distintos do dataset.
-
-### Implementação e Resultados da VAE
-
-A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/indoors_scenes_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
-
-Assim como o esperado, obtivemos um resultado com imagens borradas [10], mas o aprendizado da rede ao longo das épocas foi notável.
-
-Samples amostrados espaço latente -> decoder na época 0:  
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_0.png)
-
-Samples amostrados espaço latente -> decoder na época 49:  
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_49.png)
-
-Samples amostrados espaço latente -> decoder na época 99:  
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_99.png)
-
-
-Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
-
-#### Tentativa com VAE simples
-
-Vale ressaltar o experimento feito com a VAE mais simples, sem camadas convolucionais, presente no notebook `notebooks/leonardo_VAE_indoors_scenes.ipynb`. As imagens geradas por essa solução ficaram muito diferente do esperado, com uma saturação excessiva. Exploraremos os parâmetros de normalização das fotos para tentar corrigir esse problema, porém a solução com VAEs com camadas convolucionais gerou resultados mais próximos do esperado.
-
-Samples amostrados espaço latente -> decoder na época 295:  
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_sample.png)
-
-Reconstruções na época 295:
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
-
-
-### Resultados da DCGAN
-
-Devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom` para a DCGAN. O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a execução, percebeu-se que na época 1100 já era possível encontrar imagens geradas que se assemelhavam a quartos, mas com muitas distorções, como demonstrado na figura abaixo: 
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_1100.png)
-
-Além disso, as losses do discriminador e do gerador se manteram instáveis durante o treino comparando-se aos resultados apresentados no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html). A figura abaixo apresenta as losses durante o treinamento do nosso modelo:
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_loss.png)
-
-Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue uma crescente até um decaimento abrupto próximo ao fim do treino. Julgamos pela baixa qualidade dos resultados não prosseguir com uma avaliação mais profunda deste modelo. Principalmente por conta da FastGAN apresentar melhores resultados qualitativos. 
-
-
 ### Resultados FAST GAN
 
 A única arquitetura capaz de representar imagens significativas foi a FAST GAN e, por isso, seus resultados foram explorados de maneira mais aprofundada. Foram gerados resultados de Adversarial Accuracy, Privacy Loss e FID, além de uma análise qualitativa das distribuições utilizando PCA, para modelos treinados com batch size de 8 e 10K, 50K, 100K e 150K iterações. Os resultados foram consolidados na tabela abaixo:  
@@ -161,11 +95,11 @@ A única arquitetura capaz de representar imagens significativas foi a FAST GAN 
 
 #### Métricas objetivas
 
-Uma boa maneira de interpretar os resultados da Adversarial Accuracy é pensar que ela representa o desempenho de um classificador KNN que tenta discriminar o dataset sintético do dataset original. Idealmente, se as amostras sintéticas reproduzem perfeitamente a distribuição original, espera-se que o desempenho desse classificador seja aleatório e, portanto, o valor da Adversarial Accuracy tenderia a 0.5. Por tanto, quanto mais distante desse valor ideal, menos reais são as imagens sintéticas. Isto posto, é perceptível um ganho considerável de desempenho a partir da iteração 50K, porém os valores na ordem de 0.85 indicam que as imagens geradas ainda estão distantes da distribuição original.  
+Uma boa maneira de interpretar os resultados da Adversarial Accuracy é pensar que ela representa o desempenho de um classificador KNN que tenta discriminar o dataset sintético do dataset original. Idealmente, se as amostras sintéticas reproduzem perfeitamente a distribuição original, espera-se que o desempenho desse classificador seja aleatório e, portanto, o valor da Adversarial Accuracy tenderia a 0.5. Por tanto, quanto mais distante desse valor ideal, menos reais são as imagens sintéticas. Isto posto, é perceptível um ganho considerável de desempenho a partir da iteração 50K, porém os valores na ordem de 0.85 indicam que as imagens geradas ainda estão distantes da distribuição original.  TODO: modificar esse texto pra ser mais direto
 
-O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de "vazamento" de informações de treino para as amostras sintéticas. Em todos as iterações testadas, a métrica foi aproximadamente nula, o que indica um baixo grau de cópia das informações usadas durante o aprendizado da rede. Contudo, a baixa qualidade das fotos, demonstradas pelo alto AA, podem contribuir para uma métrica de Privacy Loss baixa, pois a falta de qualidade produz imagens diferentes o suficiente das imagens originais.
+O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de "vazamento" de informações de treino para as amostras sintéticas. Em todos as iterações testadas, a métrica foi aproximadamente nula, o que indica um baixo grau de cópia das informações usadas durante o aprendizado da rede. Contudo, a baixa qualidade das fotos, demonstradas pelo alto AA, podem contribuir para uma métrica de Privacy Loss baixa, pois a falta de qualidade produz imagens diferentes o suficiente das imagens originais. TODO: modificar esse texto pra ser mais direto
 
-Os valores de FID representam a qualidade da amostras geradas. De maneira similar à AA, também é possível ver um ganho de desempenho no modelo com 50K iterações.  
+Os valores de FID representam a qualidade da amostras geradas. De maneira similar à AA, também é possível ver um ganho de desempenho no modelo com 50K iterações.  TODO: modificar esse texto pra ser mais direto
 
 #### Análise via PCA
 
@@ -185,7 +119,7 @@ Nota-se que, apesar das imagens geradas não serem idênticas as vistas no trein
 
 Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para a direita:
 
-Foto sintética -> 1ª foto real mais próxima -> 2ª foto real mais próxima -> 3ª foto real mais próxima -> 4ª foto real mais próxima
+<p align="center"> Foto sintética -> 1ª foto real mais próxima -> 2ª foto real mais próxima -> 3ª foto real mais próxima -> 4ª foto real mais próxima </p>
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_19.png)
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_19.png)  
@@ -199,7 +133,6 @@ Foto sintética -> 1ª foto real mais próxima -> 2ª foto real mais próxima ->
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_331.png)
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_331.png)
 
-  
 ## Conclusão
 
 > A sessão de Conclusão deve ser uma sessão que recupera as principais informações já apresentadas no relatório e que aponta para trabalhos futuros.
@@ -231,3 +164,63 @@ E2: Devido aos resultados parciais apresentados até então, iremos inserir mais
 [9] [Heusel, M., Ramsauer, H., Unterthiner, T., Nessler, B., & Hochreiter, S. (2017). Gans trained by a two time-scale update rule converge to a local nash equilibrium. Advances in neural information processing systems, 30.](https://proceedings.neurips.cc/paper/2017/hash/8a1d694707eb0fefe65871369074926d-Abstract.html)
 
 [10] [Cai, L., Gao, H. and Ji, S., 2019, May. Multi-stage variational auto-encoders for coarse-to-fine image generation. In Proceedings of the 2019 SIAM International Conference on Data Mining (pp. 630-638). Society for Industrial and Applied Mathematics.](https://arxiv.org/abs/1705.07202)
+
+## Apêndice A
+
+### Resultados da GAN
+
+Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utilizamos o dataset completo com 15620 exemplos e treinamos o modelo para 50 épocas, a imagem abaixo são 16 samples geradas pela rede geradora após a última época. 
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_full_dataset_epoch_50.png)
+
+Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. Vale mencionar que realizamos um experimento com o mesmo modelo porém para um dataset de apenas duas imagens, no notebook `notebooks/GAN_overfit_dataset.ipynb`, e o modelo foi capaz de gerar as duas imagens, logo podemos concluir que o modelo não teve a capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognition](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
+
+Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), desenvolvemos uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, seria capaz de generalizar mais exemplos distintos do dataset.
+
+
+### Resultados da DCGAN
+
+Devido a alta variabilidade do Indoor Recognition Dataset, decidimos reduzir nossos experimentos a classe `bedroom` para a DCGAN. O notebook da implementação encontra-se em `notebooks/DC_GAN.ipynb`. Durante a execução, percebeu-se que na época 1100 já era possível encontrar imagens geradas que se assemelhavam a quartos, mas com muitas distorções, como demonstrado na figura abaixo: 
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_1100.png)
+
+Além disso, as losses do discriminador e do gerador se manteram instáveis durante o treino comparando-se aos resultados apresentados no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html). A figura abaixo apresenta as losses durante o treinamento do nosso modelo:
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/DC_GAN_loss.png)
+
+Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue uma crescente até um decaimento abrupto próximo ao fim do treino. Julgamos pela baixa qualidade dos resultados não prosseguir com uma avaliação mais profunda deste modelo. Principalmente por conta da FastGAN apresentar melhores resultados qualitativos. 
+
+### VAE
+
+A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/indoors_scenes_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+
+Assim como o esperado, obtivemos um resultado com imagens borradas [10], mas o aprendizado da rede ao longo das épocas foi notável.
+
+Samples amostrados espaço latente -> decoder na época 0:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_0.png)
+
+Samples amostrados espaço latente -> decoder na época 49:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_49.png)
+
+Samples amostrados espaço latente -> decoder na época 99:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_99.png)
+
+
+Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
+
+#### VAE simples
+
+Vale ressaltar o experimento feito com a VAE mais simples, sem camadas convolucionais, presente no notebook `notebooks/leonardo_VAE_indoors_scenes.ipynb`. As imagens geradas por essa solução ficaram muito diferente do esperado, com uma saturação excessiva. Exploraremos os parâmetros de normalização das fotos para tentar corrigir esse problema, porém a solução com VAEs com camadas convolucionais gerou resultados mais próximos do esperado.
+
+Samples amostrados espaço latente -> decoder na época 295:  
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_sample.png)
+
+Reconstruções na época 295:
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
+
+  
+
