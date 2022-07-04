@@ -116,7 +116,7 @@ inserir aqui texto sobre o PCA com baixa variância
 
 #### Comparação das imagens geradas com a base de treino
 
-As proximidades entre a foto gerada e as imagens de treino foram calculadas usando tanto a distância perceptual via LPIPS, como a distância cosseno dos embeddings gerados pela RESNET.
+As proximidades entre a foto gerada e as imagens de treino foram calculadas usando tanto a distância perceptual via LPIPS, como a distância cosseno dos embeddings gerados pela ResNet.
 
 Nota-se que, apesar das imagens geradas não serem idênticas as vistas no treino, de certa forma existe uma interpolação entre as características mais acentuadas das fotos, que é composta na foto gerada. Isso fica mais evidente na primeira foto, onde há a reprodução da janela com paisagem verde e elementos do teto das fotos originais na foto gerada sinteticamente.
 
@@ -135,6 +135,7 @@ Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/lpips_331.png)
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/cosine_331.png)
+
 
 ## Conclusão
 
