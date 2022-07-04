@@ -42,11 +42,11 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
 
-O pre-processamento do dataset utilizado para o treino dos modelos por der encontrado no notebook `notebooks/leonardo_dataprep.ipynb`.
+A preparação do dataset utilizado para o treino dos modelos pode ser encontrado no notebook `notebooks/indoors_scenes_dataprep.ipynb`. Os experimentos foram nas imagens da classe `bedroom`, que contém 662 imagens no total.
 
 ### Modelos Avaliados
 <Pensei em deixar uma breve descrição dos modelos que avaliaremos aqui mas acho seria mais um nice to have>.
-Abaixo segue a descrição dos modelos utilizados. 
+Abaixo segue a descrição dos modelos utilizados.
 
 #### GAN
 Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. O modelo foi treinado por 50 épocas utilizando o dataset completo (15620 exemplos) com todas as classes.
@@ -64,6 +64,11 @@ Com o propósito de fazer uma comparação entre ambas as aplicações, geraçã
 
 #### FastGAN
 
+Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
+
+O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom'.
+
+< TODO | retirar essa parte da CGAN>.
 #### CGAN
 
 Primeiro, utilizamos uma Generative Adversarial Nets (GAN) e um Variational Autoencoder (VAE) [4] para a geração de imagens sem categoria especificada. Depois evoluiremos nossos modelos para uma Conditional GAN (CGAN) e um Conditional VAE (CVAE) [5] onde geraremos imagens especificando um grande grupo, dentre os 5, ao qual a imagem gerada deva pertencer.
@@ -74,7 +79,7 @@ Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Pri
 
 Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
 
-O processo de avaliação foi realizado apenas a FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
+O processo de avaliação foi realizado apenas na FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
 
 ## Resultados e Discussão dos Resultados
 
@@ -97,13 +102,13 @@ Para o primeiro experimento no notebook `notebooks/GAN_full_dataset.ipynb` utili
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/GAN_sample_full_dataset_epoch_50.png)
 
-Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. Vale mencionar que realizamos um experimento com o mesmo modelo porém para um dataset de apenas duas imagens, no notebook `notebooks/GAN_overfit_dataset.ipynb`, e o modelo foi capaz de gerar as duas imagens, logo podemos concluir que o modelo não teve a capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognitionde](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
+Percebe-se que o modelo não foi capaz de gerar imagens de ambientes indoor. Vale mencionar que realizamos um experimento com o mesmo modelo porém para um dataset de apenas duas imagens, no notebook `notebooks/GAN_overfit_dataset.ipynb`, e o modelo foi capaz de gerar as duas imagens, logo podemos concluir que o modelo não teve a capacidade de generalização para uma maior diversidade de exemplos. Durante este processo, encontramos o repositório [GANs Indoor Scene Recognition](https://github.com/NVukobrat/GANs-Indoor-Scene-Recognition), com uma GAN treinada no mesmo dataset que o do nosso experimento. Os autores tiveram resultados semelhantes aos nossos, a GAN apenas alcança capacidade de replicar imagens de espaços indoor diretamente de exemplos de datasets pequenos, com menos de cinco images de uma mesma classe. Nosso grupo supõe que isso ocorre pelo fato de espaços indoores terem regularidades e padrões menos evidentes quando comparados ao [rosto humano](https://thispersondoesnotexist.com/image) e [números escritos à mão](https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-an-mnist-handwritten-digits-from-scratch-in-keras/), ambos casos que possuem precedentes de sucesso com GANs. 
 
 Dessa maneira, diferente de nosso planejamento inicial que tinha como próximo passo o desenvolvimento de um Conditional GAN (CGAN), desenvolvemos uma Deep Convolutional GAN (DCGAN) para verificar se a estrutuda profunda de convoluções, propícia para geração de imagens de alta fidelidade, seria capaz de generalizar mais exemplos distintos do dataset.
 
 ### Implementação e Resultados da VAE
 
-A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/leonardo_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/indoors_scenes_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
 
 Assim como o esperado, obtivemos um resultado com imagens borradas [10], mas o aprendizado da rede ao longo das épocas foi notável.
 
