@@ -54,8 +54,7 @@ Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dim
 
 #### DCGAN
 
-Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. As redes geradora e discriminadora possuem, respectivamente, 3.7M e 2.8M parâmetros treináveis. A rede geradora possui a seguinte taxonomia:
-![](https://pytorch.org/tutorials/_images/dcgan_generator.png)
+Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [DCGAN Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html), uma vez que este foi capaz de gerar estruturas faciais que se assemelhavam a rostos humanos reais, apesar de obterem algumas distorções presentes. As redes geradora e discriminadora possuem, respectivamente, 3.7M e 2.8M parâmetros treináveis.
 
 
 Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmos hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo ao do tutorial (8000).
