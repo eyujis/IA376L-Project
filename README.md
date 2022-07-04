@@ -118,7 +118,7 @@ inserir aqui texto sobre o PCA com baixa variância
 
 O grau de semelhança entre a foto gerada e as imagens de treino foi calculado usando tanto a distância perceptual via LPIPS, como a distância cosseno dos embeddings gerados pela ResNet.
 
-Nota-se que, apesar das imagens geradas não serem idênticas as vistas no treino, existem indícios de que elas são resultantes de uma interpolação entre as características mais acentuadas das imagens presentes em treino. Isso fica mais evidente na primeira foto, onde há a reprodução da janela com paisagem verde e elementos do teto das fotos originais na foto gerada sinteticamente.
+Nota-se que, apesar das imagens geradas não serem idênticas as vistas no treino, alguns indícios sugerem que elas são resultantes de uma composição de uma ou mais características das imagens presentes em treino. Um exemplo disso ocorre na primeira foto, onde há a reprodução da janela com paisagem verde e elementos do teto das fotos originais na foto gerada sinteticamente. Essa afirmação ainda é apenas uma hipótese, seriam necessárias mais análises quantitativas entre diferentes imagens para concluir a ocorrência deste fenômeno.
 
 Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para a direita:
 
