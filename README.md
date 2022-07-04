@@ -17,21 +17,19 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 
 > Resumo do objetivo, metodologia **e resultados** obtidos. Sugere-se máximo de 100 palavras.
 
-Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), < TODO | Helder colocar aqui as variações de VAE >, e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom` não presentes no dataset de treino. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o modelo que obteve resultados mais promissores nesta fase, desta maneira calculamos a Fréchet Inception Distance (FID) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. < TODO | Falar sobre os resultados >
+Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE com camadas convolucionais), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom`. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o único modelo gerou imagens qualitativamente interpretáveis, com elementos visuais de quartos, como abajures e camas. Desta maneira calculamos a Fréchet Inception Distance (FID), Adversarial Accuracy (AA) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. Os resultados obtidos indicaram uma baixa qualidade da imagem (AA >> 0.5), porém com baixa Privacy Loss, o que indica a ausência de cópia de imagens.  
 
 
 ## Descrição do Problema/Motivação
 
 > Descrição do contexto gerador do tema do projeto. Motivação para abordar este tema de projeto.
 
-< TODO | Falar sobre encorporação de agentes, leis peirceanas, criação de conceitos e o porquê é interessante utilizar espaços indoor para isso>.
-
 Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Objetivo
 > Descrição do que o projeto se propõe a fazer. É possível explicitar um objetivo geral e objetivos específicos do projeto.
 
-Este projeto tem como objetivo geral implementar e avaliar os modelos generativos Variational Autoencoder (VAE), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), < TODO | Helder colocar aqui as variações de VAE >, e FastGAN para a tarefa de sintetização de imagens de espaços indoor da classe bedroom. Como objetivo específico, busca-se que o modelo sintetize exemplos diferentes dos presentes no treino, logo ele teria a capacidade de generalizar o conceito de quartos e não apenas replicar o que já teve acesso. 
+Este projeto tem como objetivo geral implementar e avaliar os modelos generativos Variational Autoencoder (VAE com camadas convolucionais), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), e FastGAN para a tarefa de sintetização de imagens de espaços indoor da classe bedroom. Como objetivo específico, busca-se que o modelo sintetize exemplos diferentes dos presentes no treino, logo ele teria a capacidade de generalizar o conceito de quartos e não apenas replicar o que já teve acesso. 
 
 
 ## Metodologia Proposta
@@ -45,16 +43,17 @@ Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/ww
 A preparação do dataset utilizado para o treino dos modelos pode ser encontrado no notebook `notebooks/indoors_scenes_dataprep.ipynb`. Os experimentos foram nas imagens da classe `bedroom`, que contém 662 imagens no total.
 
 ### Modelos Avaliados
-<Pensei em deixar uma breve descrição dos modelos que avaliaremos aqui mas acho seria mais um nice to have>.
+
 Abaixo segue a descrição dos modelos utilizados.
 
 #### FastGAN
 
 Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
 
-O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom'.
+O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom' para treinamento, enquanto outras 331 imagens foram usadas para validação nas métricas de avaliação.
 
 #### GAN
+
 Implementamos a GAN utilizando o dataset com imagens redimensionadas para as dimensões 28x28 nos canais RGB. Nossa implementação da GAN em PyTorch é uma adaptação da GAN do repositório [building-a-simples-vanilla-gan-with-pytorch](https://github.com/christianversloot/machine-learning-articles/blob/main/building-a-simple-vanilla-gan-with-pytorch.md). Realizamos dois experimentos utilizando uma GAN vanilla previamente validada no dataset [MNIST](https://pytorch.org/vision/main/generated/torchvision.datasets.MNIST.html) com rede geradora de taxonomia 128x256x512 e rede discriminadora de taxonomia 1024x512x256 usando como função de loss entropia binária cruzada. O modelo foi treinado por 50 épocas utilizando o dataset completo (15620 exemplos) com todas as classes.
 
 
@@ -65,18 +64,22 @@ Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [
 
 Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmos hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo ao do tutorial (8000).
 
-#### VAE
 
+#### VAE com camada convolucional
+
+Escrever VAE com camada convolucional
 
 ### Proposta de avaliação
 
-Utilizamos a _nearest neighbor Adversarial Accuracy_ (AA) para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Para calcular a semelhança entre os dados, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da resnet <adicionar aqui a referência da resnet usada.> <explicar que a métrica é ótima em 0.5> 
+Utilizaremos a _nearest neighbor Adversarial Accuracy_ (AA) [8] para calcular a _Privacy Loss_ (AA_test - AA_train) que verifica se o modelo está simplesmente copiando as imagens do conjunto de treino, indo contra as premissas do projeto de criar novas imagens. Uma boa maneira de interpretar os resultados da Adversarial Accuracy é pensar que ela representa o desempenho de um classificador KNN que tenta discriminar o dataset sintético do dataset original. Idealmente, se as amostras sintéticas reproduzem perfeitamente a distribuição original, espera-se que o desempenho desse classificador seja aleatório e, portanto, o valor da Adversarial Accuracy tenderia a 0.5. Portanto, quanto mais distante desse valor ideal, menos realistas são as imagens sintéticas.  
 
-Também utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
+Para calcular a semelhança entre os dados de maneira _pairwise_, este método utiliza uma distância entre data points. Dessa maneira, adaptamos essa distância que utilizava originalmente de dados tabulares como entrada para uma distância entre imagens. A distância sugerida por nosso grupo foi usar a distância de cosseno entre vetores do embedding da ResNet. Também utilizamos a métrica de distância perceptual LPIPS [11].
 
-Análise qualitativa das fotos comparando foto mais próxima LPIPS e cosseno.   TODO: escrever
+Utilizaremos a Fréchet Inception Distance (FID), introduzida em [9], que transforma amostras sintetizadas num feature vector especificado por uma camada da Inception Net. Analisando este embedding como uma gaussiana multivariada, a média e a covariância são calculadas para os dados sintéticos e para os dados reais. A distância de Fréchet entre essas duas gaussianas (também conhecida como distância de Wasserstein-2) é usada para quantificar a qualidade das amostras sintetizadas. Um menor FID significa uma menor distância entre as distribuições de dados sintéticos e reais. 
 
-O processo de avaliação foi realizado apenas na FastGAN, uma vez que foi o único modelo que obteve resultados qualitativos satisfatórios. 
+Utilizaremos as distâncias cosseno e LPIPS para gerar uma lista com as 4 imagens mais próximas à imagem sintética de referência. Dessa maneira, exploraremos, qualitativamente, se os elementos da imagem gerada são uma composição das imagens mais parecidas no dataset que foi utilizado para o treinamento.
+
+O processo de avaliação foi realizado apenas na FastGAN. 
 
 ## Resultados e Discussão dos Resultados
 
@@ -165,6 +168,8 @@ E2: Devido aos resultados parciais apresentados até então, iremos inserir mais
 
 [10] [Cai, L., Gao, H. and Ji, S., 2019, May. Multi-stage variational auto-encoders for coarse-to-fine image generation. In Proceedings of the 2019 SIAM International Conference on Data Mining (pp. 630-638). Society for Industrial and Applied Mathematics.](https://arxiv.org/abs/1705.07202)
 
+[11] [Zhang, R., Isola, P., Efros, A. A., Shechtman, E., & Wang, O. (2018). The unreasonable effectiveness of deep features as a perceptual metric. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 586-595).](https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.html)
+
 ## Apêndice A
 
 ### Resultados da GAN
@@ -189,7 +194,7 @@ Além disso, as losses do discriminador e do gerador se manteram instáveis dura
 
 Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue uma crescente até um decaimento abrupto próximo ao fim do treino. Julgamos pela baixa qualidade dos resultados não prosseguir com uma avaliação mais profunda deste modelo. Principalmente por conta da FastGAN apresentar melhores resultados qualitativos. 
 
-### VAE
+### VAE com camadas convolucionais
 
 A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/indoors_scenes_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
 
@@ -209,18 +214,4 @@ Samples amostrados espaço latente -> decoder na época 99:
 
 
 Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
-
-#### VAE simples
-
-Vale ressaltar o experimento feito com a VAE mais simples, sem camadas convolucionais, presente no notebook `notebooks/leonardo_VAE_indoors_scenes.ipynb`. As imagens geradas por essa solução ficaram muito diferente do esperado, com uma saturação excessiva. Exploraremos os parâmetros de normalização das fotos para tentar corrigir esse problema, porém a solução com VAEs com camadas convolucionais gerou resultados mais próximos do esperado.
-
-Samples amostrados espaço latente -> decoder na época 295:  
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_sample.png)
-
-Reconstruções na época 295:
-
-![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/SimpleVAE_reconstruction.png)
-
-  
 
