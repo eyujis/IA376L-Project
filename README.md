@@ -108,7 +108,7 @@ O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de 
 
 #### Análise via PCA
 
-Realizamos uma tentativa de analisar os resultados visualmente utilizando o PCA, contudo, utilizando duas componentes o método foi capaz de amostrar apenas 12% da variância. Apesar disso, percebe-se que os dados de validação tiveram um comportamento mais uniforme comparado aos exemplos sintetizados que tiveram concentrações em algumas regiões. 
+Realizamos uma análise visual dos dados utilizando o PCA, contudo, utilizando duas componentes o método foi capaz de amostrar apenas 12% da variância. Apesar disso, percebe-se que os dados de validação (REAL) tiveram uma dispersão mais semelhante aos dados de treino comparado aos exemplos sintetizados, que tiveram uma maior concentração nas regiões centrais da distribuição real. 
 
 <p align="center">
 <img width="280" height="550" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_real.png">
