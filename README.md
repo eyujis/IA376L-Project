@@ -19,7 +19,7 @@ Este projeto tem como objetivo implementar e avaliar os modelos generativos Vari
 
 ## Descrição do Problema/Motivação
 
-Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
+Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, desejamos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Objetivo
 
@@ -29,7 +29,7 @@ Este projeto tem como objetivo geral implementar e avaliar os modelos generativo
 ## Metodologia Proposta
 
 ### Dataset
-Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
+Utilizamos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
 
 ![dataset_sample](http://web.mit.edu/torralba/www/allIndoors.jpg)
 
