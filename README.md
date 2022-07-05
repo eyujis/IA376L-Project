@@ -90,6 +90,8 @@ O processo de avaliação foi realizado apenas na FastGAN.
 > O que se espera da sessão de resultados é que ela **apresente e discuta** somente os resultados mais **relevantes**, que mostre os **potenciais e/ou limitações** da metodologia, que destaquem aspectos
 > de **performance** e que contenha conteúdo que possa ser classificado como **compartilhamento organizado, didático e reprodutível de conhecimento relevante para a comunidade**. 
 
+A FastGAN foi o único modelo que obteve resultados qualitativos passíveis para uma análise objetiva mais crítica, os resultados dos demais modelos encontram-se no [Apêndice A](https://github.com/eyujis/IA376L-Project/blob/main/README.md#ap%C3%AAndice-a).
+
 ### Resultados FastGAN
 
 Os resultados da FastGAN foram explorados de maneira mais aprofundada. Foram gerados resultados de Adversarial Accuracy, Privacy Loss e FID, além de uma análise qualitativa das distribuições utilizando PCA, para modelos treinados com batch size de 8 e 10K, 50K, 100K e 150K iterações. Os resultados foram comparados com os gerados pelo dataset de validação, com 331 imagens reais não utilizados no período de treinamento.  
