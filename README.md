@@ -137,7 +137,6 @@ Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para
 
 
 ## Referências Bibliográficas
-> Apontar nesta seção as referências bibliográficas adotadas no projeto.
 
 [1] [Indoor Scene Dataset](http://web.mit.edu/torralba/www/indoor.html)
 
