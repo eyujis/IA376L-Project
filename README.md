@@ -240,3 +240,5 @@ Samples - época 1499
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_VanillaVAE_Epoch_1499.png)
 
+
+Os resultados indicam que há a possibilidade de otimização do parâmetro KLD Weight.
