@@ -41,7 +41,7 @@ Abaixo segue a descrição dos modelos utilizados.
 
 #### FastGAN
 
-Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
+Para a arquitetura FastGAN, foi utilizado o [repositório](https://github.com/odegeasslbc/FastGAN-pytorch) disponibilizado no paper ["Towards Faster and Stabilized GAN Training for High-fidelity Few-shot Image Synthesis"](https://arxiv.org/abs/2101.04775). Tal modelo foi escolhido, pois apresenta uma estrutura GAN 'light-weight' capaz de gerar imagens de alta qualidade (resolução 1024 x 1024) com custo computacional reduzido (conseguimos rodar no colab utilizando cerca de 12 horas de treinamento para cada 50K iterações) e com boa performance em datasets pequenos (de acordo com o paper, com menos de 100 amostras de treinamento).
 
 O modelo foi treinado em 3 fases de 50k iterações cada uma, totalizando 150k, onde os checkpoints foram salvos e retomados de acordo com a disponibilidade do colab. Foi utilizado um batch-size de 8 imagens, sendo que cada uma delas foi redimensionada para as dimensões 1024 x 1024 nos canais RGB. O vetor latente utilizado foi de 256. Nesse treinamento, foram utilizadas 331 imagens da classe 'bedroom' para treinamento, enquanto outras 331 imagens foram usadas para validação nas métricas de avaliação.
 
@@ -58,7 +58,7 @@ Para a implementação da DCGAN utilizamos o mesmo modelo presente no tutorial [
 Com o propósito de fazer uma comparação entre ambas as aplicações, geração de faces humanas e geração de espaços indoor da classe `bedroom`, decidimos utilizar os mesmos hiperparâmetros e aumentar o número de épocas de treino para 1350, para obter um número de iterações próximo ao do tutorial (8000).
 
 
-#### VAE com camada convolucional
+#### VAE com camadas convolucionais
 
 Para a implementação da VAE com camadas convolucionais, utilizamos a implementação presente no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente de 512, imagens em 256x256, gerando modelos com aproximadamente 54M de parâmetros treináveis.
 
@@ -83,6 +83,14 @@ A FastGAN foi o único modelo que obteve resultados qualitativos passíveis para
 Os resultados da FastGAN foram explorados de maneira mais aprofundada. Foram gerados resultados de Adversarial Accuracy, Privacy Loss e FID, além de uma análise qualitativa das distribuições utilizando PCA, para modelos treinados com batch size de 8 e 10K, 50K, 100K e 150K iterações. Os resultados foram comparados com os gerados pelo dataset de validação, com 331 imagens reais não utilizados no período de treinamento.  
 
 <p align="center"><img alt="" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/table_results.png"></p>
+<p align="center">Tabela 1: Métricas calculadas para a FastGAN</p>
+
+#### Imagens geradas
+
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/15.png"> |  <img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/19.png">|<img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/112.png">  |
+|<img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/331.png">|<img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/378.png">  |  <img width="300" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/382.png">|
 
 #### Métricas objetivas
 
