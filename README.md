@@ -15,25 +15,19 @@ oferecida no primeiro semestre de 2022, na Unicamp, sob supervisão da Profa. Dr
 
 ## Resumo (Abstract)
 
-> Resumo do objetivo, metodologia **e resultados** obtidos. Sugere-se máximo de 100 palavras.
-
 Este projeto tem como objetivo implementar e avaliar os modelos generativos Variational Autoencoder (VAE com camadas convolucionais), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), e FastGAN para a sintetização de imagens de espaços indoor da classe `bedroom`. Primeiro foi realizado uma avaliação qualitativa implementando todos os modelos e verificando quais seriam capazes de gerar figuras semelhantes a quartos. A FastGAN foi o único modelo gerou imagens qualitativamente interpretáveis, com elementos visuais de quartos, como abajures e camas. Desta maneira calculamos a Fréchet Inception Distance (FID), Adversarial Accuracy (AA) e a Privacy Loss deste modelo para avaliar, respectivamente, a qualidade das amostras sintetizadas e verificar se o modelo não estava simplesmente copiando imagens do dataset de treino. Os resultados obtidos indicaram uma baixa qualidade da imagem (AA >> 0.5), porém com baixa Privacy Loss, o que indica a ausência de cópia de imagens.  
 
 
 ## Descrição do Problema/Motivação
 
-> Descrição do contexto gerador do tema do projeto. Motivação para abordar este tema de projeto.
-
 Nesse projeto, temos o objetivo de gerar imagens de espaços indoors a partir de um modelo sintético. Esse problema foi encontrado no paper Recognizing Indoor Scenes [2], onde é apresentado que a tarefa de reconhecimento de ambientes internos pode ser desafiadora no contexto de visão computacional. Dessa forma, queremos criar imagens inseridas nesse contexto e assim medir a capacidade do modelo de geração de ambientes arquitetônicamente criativos e realistas que podem ser utilizados como inspiração para projetos de design de interiores.
 
 ## Objetivo
-> Descrição do que o projeto se propõe a fazer. É possível explicitar um objetivo geral e objetivos específicos do projeto.
 
 Este projeto tem como objetivo geral implementar e avaliar os modelos generativos Variational Autoencoder (VAE com camadas convolucionais), Generative Adversarial Networks (GAN), Deep Convolutional GAN (DCGAN), e FastGAN para a tarefa de sintetização de imagens de espaços indoor da classe bedroom. Como objetivo específico, busca-se que o modelo sintetize exemplos diferentes dos presentes no treino, logo ele teria a capacidade de generalizar o conceito de quartos e não apenas replicar o que já teve acesso. 
 
 
 ## Metodologia Proposta
->Descrever de maneira clara e objetiva, citando referências, a metodologia proposta (E2) ou adotada (E3) para se alcançar os objetivos do projeto. Descrever bases de dados utilizadas. Citar algoritmos de referência. Justificar os porquês dos métodos escolhidos. Apontar ferramentas relevantes. Descrever metodologia de avaliação (como se avalia se os objetivos foram cumpridos ou não?).
 
 ### Dataset
 Utilizaremos o [Indoor Scene Recognition dataset](http://web.mit.edu/torralba/www/indoor.html). Ele contém 67 categorias de espaços indoor, divididos em 5 grandes grupos (Store, Home, Public spaces, Leisure, Working Place), e um total de 15620 imagens. O número de imagens varia entre categorias, porém cada uma possui pelo menos 100 exemplos. Todas as imagens estão em formato jpg. Cada imagem tem uma resolução mínima de 200 pixels em seu menor eixo.
@@ -82,13 +76,6 @@ Utilizamos as distâncias cosseno e LPIPS para gerar uma lista com as 4 imagens 
 O processo de avaliação foi realizado apenas na FastGAN. 
 
 ## Resultados e Discussão dos Resultados
-
-> Na entrega final do projeto (E3), essa seção deve elencar os **principais** resultados obtidos (não necessariamente todos), que melhor representam o cumprimento dos objetivos do projeto.
-
-> A discussão dos resultados pode ser realizada em seção separada ou integrada à sessão de resultados. Isso é uma questão de estilo.
-> Considera-se fundamental que a apresentação de resultados não sirva como um tratado que tem como único objetivo mostrar que "se trabalhou muito".
-> O que se espera da sessão de resultados é que ela **apresente e discuta** somente os resultados mais **relevantes**, que mostre os **potenciais e/ou limitações** da metodologia, que destaquem aspectos
-> de **performance** e que contenha conteúdo que possa ser classificado como **compartilhamento organizado, didático e reprodutível de conhecimento relevante para a comunidade**. 
 
 A FastGAN foi o único modelo que obteve resultados qualitativos passíveis para uma análise objetiva mais crítica, os resultados dos demais modelos encontram-se no [Apêndice A](https://github.com/eyujis/IA376L-Project/blob/main/README.md#ap%C3%AAndice-a).
 
@@ -147,11 +134,6 @@ Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para
 
 ## Conclusão
 
-> A sessão de Conclusão deve ser uma sessão que recupera as principais informações já apresentadas no relatório e que aponta para trabalhos futuros.
-> Na entrega parcial do projeto (E2) pode conter informações sobre quais etapas ou como o projeto será conduzido até a sua finalização.
-> Na entrega final do projeto (E3) espera-se que a conclusão elenque, dentre outros aspectos, possibilidades de continuidade do projeto.
-
-E2: Devido aos resultados parciais apresentados até então, iremos inserir mais uma etapa de exploração de GANs e VAEs com estruturas mais complexas dos que os inicialmente abordados. Feito isso, serão então avaliados os modelos condicionais. Essas novas atividades deverão afetar, mas não atrasar, o cronograma proposto inicialmente.
 
 
 ## Referências Bibliográficas
