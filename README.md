@@ -225,7 +225,7 @@ Samples - época 1499
 
 #### Experimento 3
 
-Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas com KLD Weight de 0.00025, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas com KLD Weight de 0.0, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
 
 Imagens originais - época 1499
 
