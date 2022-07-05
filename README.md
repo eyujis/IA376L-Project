@@ -67,7 +67,7 @@ Com o propósito de fazer uma comparação entre ambas as aplicações, geraçã
 
 #### VAE com camada convolucional
 
-Escrever VAE com camada convolucional
+Para a implementação da VAE com camadas convolucionais, utilizamos a implementação presente no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente de 512, imagens em 256x256, gerando modelos com aproximadamente 54M de parâmetros treináveis.
 
 ### Proposta de avaliação
 
@@ -98,11 +98,13 @@ Os resultados da FastGAN foram explorados de maneira mais aprofundada. Foram ger
 
 #### Métricas objetivas
 
-Uma boa maneira de interpretar os resultados da Adversarial Accuracy é pensar que ela representa o desempenho de um classificador KNN que tenta discriminar o dataset sintético do dataset original. Idealmente, se as amostras sintéticas reproduzem perfeitamente a distribuição original, espera-se que o desempenho desse classificador seja aleatório e, portanto, o valor da Adversarial Accuracy tenderia a 0.5. Por tanto, quanto mais distante desse valor ideal, menos reais são as imagens sintéticas. Isto posto, é perceptível um ganho considerável de desempenho a partir da iteração 50K, porém os valores na ordem de 0.85 indicam que as imagens geradas ainda estão distantes da distribuição original.  TODO: modificar esse texto pra ser mais direto
+Como valores de referência para a FID e AA(Treino), calculamos a métrica entre as 331 imagens dos dados de treino e as 331 imagens dos dados de validação. O resultado pode ser visto na Tabela 1.
 
-O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de "vazamento" de informações de treino para as amostras sintéticas. Em todos as iterações testadas, a métrica foi aproximadamente nula, o que indica um baixo grau de cópia das informações usadas durante o aprendizado da rede. Contudo, a baixa qualidade das fotos, demonstradas pelo alto AA, podem contribuir para uma métrica de Privacy Loss baixa, pois a falta de qualidade produz imagens diferentes o suficiente das imagens originais. TODO: modificar esse texto pra ser mais direto
+Posteriormente, calculamos a FID entre os dados de treino da FastGAN e 331 imagens geradas por 4 diferentes checkpoints (10k, 50k, 100k, 150k) a fim de visualizar a melhora de desempenho conforme o treinamento avançou. A FID nos indica que o checkpoint que alcançou a maior proximidade com a distribuição de treinamento foi o da iteração 50k e que não houve melhora após isso. Além disso, esse valor ainda está distante do FID de referência que buscávamos entre os dados de treino e validação.
 
-Os valores de FID representam a qualidade da amostras geradas. De maneira similar à AA, também é possível ver um ganho de desempenho no modelo com 50K iterações.  TODO: modificar esse texto pra ser mais direto
+Isso também ocorreu para a métrica de Adversarial Accuracy, onde o checkpoint de 50k alcançou melhor desempenho.
+
+O valor da Privacy Loss reflete, de maneira diretamente proporcional, o grau de "vazamento" de informações de treino para as amostras sintéticas. Em todos as iterações testadas, a métrica foi aproximadamente nula, o que indica um baixo grau de cópia das informações usadas durante o aprendizado da rede. Contudo, a baixa qualidade das fotos, demonstradas pelos altos AA e FID, podem contribuir para uma métrica de Privacy Loss baixa, pois a falta de qualidade produz imagens diferentes o suficiente das imagens originais.
 
 #### Análise via PCA
 
