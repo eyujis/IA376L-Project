@@ -108,6 +108,10 @@ Os valores de FID representam a qualidade da amostras geradas. De maneira simila
 
 inserir aqui texto sobre o PCA com baixa variância
 
+<p align="center">
+<img width="280" height="550" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_real.png">
+</p>
+
 | | |
 |:-------------------------:|:-------------------------:|
 |<img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_10k.png"> |  <img width="1604" alt="screen shot 2017-08-07 at 12 18 15 pm" src="https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/pca_50k.png">|
