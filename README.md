@@ -137,6 +137,8 @@ Dentre os modelos estudados, a FastGAN demonstrou o melhor desempenho visual, po
 
 Uma contribuição desse estudo foi aplicar o conceito de Adversarial Accuracy para imagens, anteriormente utilizado para dados tabulares. As análises decorrentes dessas métricas se mostraram úteis: a Adversarial Accuracy tem o papel semelhante ao FID, refletindo a qualidade das imagens geradas, enquanto a Privacy Loss explora a cópia de imagens de treino, grandeza ausente nas métricas de avaliação tradicionais.  
 
+O ajuste dos hiperparâmetros da FastGAN pode gerar resultados melhores e não foi explorado neste trabalho, principalmente devido ao alto tempo de processamento para cada treinamento completo (150K iterações).
+
 A extensão do estudo com datasets maiores, como o LSUN [12], pode ser um próximo passo para a geração de imagens de ambientes. Possivelmente, a maior quantidade de exemplos de treinamento pode ajudar o modelo a capturar melhor a distribuição real e, consequentemente, gerar imagens mais fidedignas.  
 
 
