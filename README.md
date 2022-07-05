@@ -133,6 +133,11 @@ Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para
 
 ## Conclusão
 
+Dentre os modelos estudados, a FastGAN demonstrou o melhor desempenho visual, porém ainda esteve distante de representar uma imagem real de quarto, apesar de trazer elementos que compôem o ambiente, como camas, abajures, armários e janelas. Os valores de Privacy Loss indicam que não houve cópia das imagens de treino. É possível que esse efeito seja reflexo do modelo ter gerado imagens muito distante das reais, como pode ser averiguado pelo FID alto. Para que essa hipótese seja sustentada, seria necessária a obtenção de imagens com FID mais próximo ao do conjunto de validação.  
+
+Uma contribuição desse estudo foi aplicar o conceito de Adversarial Accuracy para imagens, anteriormente utilizado para dados tabulares. As análises decorrentes dessas métricas se mostraram úteis: a Adversarial Accuracy tem o papel semelhante ao FID, refletindo a qualidade das imagens geradas, enquanto a Privacy Loss explora a cópia de imagens de treino, grandeza ausente nas métricas de avaliação tradicionais.  
+
+A extensão do estudo com datasets maiores, como o LSUN [12], pode ser um próximo passo para a geração de imagens de ambientes. Possivelmente, a maior quantidade de exemplos de treinamento pode ajudar o modelo a capturar melhor a distribuição real e, consequentemente, gerar imagens mais fidedignas.  
 
 
 ## Referências Bibliográficas
@@ -158,6 +163,8 @@ Foram gerados conjuntos de 5 fotos seguindo o seguinte padrão, da esquerda para
 [10] [Cai, L., Gao, H. and Ji, S., 2019, May. Multi-stage variational auto-encoders for coarse-to-fine image generation. In Proceedings of the 2019 SIAM International Conference on Data Mining (pp. 630-638). Society for Industrial and Applied Mathematics.](https://arxiv.org/abs/1705.07202)
 
 [11] [Zhang, R., Isola, P., Efros, A. A., Shechtman, E., & Wang, O. (2018). The unreasonable effectiveness of deep features as a perceptual metric. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 586-595).](https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.html)
+
+[12] 
 
 ## Apêndice A
 
