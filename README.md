@@ -203,7 +203,9 @@ Nota-se que a loss do gerador não converge como ocorre no tutorial, ela segue u
 
 ### VAE com camadas convolucionais
 
-A segunda implementação, assim como o planejado, foi a da VAE tradicional. Utilizamos, novamente, o dataset apresentado no notebook `notebooks/indoors_scenes_dataprep.ipynb`, com o mesma lógica sendo aplicada no notebook `notebooks/VAE_Training_Auto.ipynb`. A implementação foi baseada no projeto [PyTorch VAE](https://github.com/AntixK/PyTorch-VAE), que fornece modelos de diversas classes de VAEs utilizando o framework PyTorch. Para os experimentos realizados, foi utilizada uma arquitetura convolucional tanto no encoder, quanto no decoder, com dimensão do espaço latente em 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+#### Experimento 1
+
+Dimensão do espaço latente de 256, imagens em 64x64 e treinamento com 100 épocas, executado em aproximadamente 5h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
 
 Assim como o esperado, obtivemos um resultado com imagens borradas [10], mas o aprendizado da rede ao longo das épocas foi notável.
 
@@ -219,6 +221,11 @@ Samples amostrados espaço latente -> decoder na época 99:
 
 ![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/VanillaVAE-256_Epoch_99.png)
 
-
 Apesar das imagens pouco interpretáveis, é possível observar que a solução gera exemplos dentro da paleta de cores, além de representar primitivamente os formatos encontrados no dataset original. Mesmo assim, ainda testaremos arquiteturas mais complexas, com diferentes tamanhos do espaço latente e mais épocas durante o treinamento.
+
+#### Experimento 2
+
+Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+
+
 
