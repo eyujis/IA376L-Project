@@ -208,7 +208,35 @@ Apesar das imagens pouco interpretáveis, é possível observar que a solução 
 
 #### Experimento 2
 
-Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas com KLD Weight de 0.00025, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+
+Imagens originais - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_original_VanillaVAE_Epoch_1499.png)
+
+Reconstruções - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_recons_VanillaVAE_Epoch_1499.png)
+
+Samples - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_VanillaVAE_Epoch_1499.png)
 
 
+
+#### Experimento 3
+
+Dimensão do espaço latente de 512, imagens em 256x256 e treinamento com 1500 épocas com KLD Weight de 0.00025, executado em aproximadamente 12h em uma Tesla-P100. A arquitetura completa pode ser encontrada [aqui](https://github.com/heldervj/PyTorch-VAE/blob/master/models/vanilla_vae.py).
+
+Imagens originais - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_original_VanillaVAE_Epoch_1499.png)
+
+Reconstruções - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_recons_VanillaVAE_Epoch_1499.png)
+
+Samples - época 1499
+
+![](https://raw.githubusercontent.com/eyujis/IA376L-Project/main/reports/figures/zero_kld_VanillaVAE_Epoch_1499.png)
 
